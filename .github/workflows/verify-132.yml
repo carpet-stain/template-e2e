@@ -1,0 +1,15 @@
+name: verify-132 noop check
+
+on:
+  push:
+    branches:
+      - verify-checks-permission-132
+
+permissions:
+  contents: read
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "produces a real check-run for infra#132's live verification"
