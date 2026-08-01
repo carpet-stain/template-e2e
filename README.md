@@ -1,5 +1,19 @@
 # template-e2e
 
-Standing sandbox for project-starter-template's live e2e. Rendered
-git-flow output is pushed, verified, and discarded per run; not a real
-project. See carpet-stain/infra for the governing OpenTofu config.
+<!-- One line: what this is and who it's for. -->
+
+## Install
+
+<!-- How to get it running. -->
+
+## Use
+
+<!-- How to run it — the common commands or entry points. -->
+
+## Contributing
+
+The contributor guide — workflow, commit rules, tooling, credentials — lives in
+`AGENTS.md` (composed from your agent-config rules; generate it if it isn't
+present yet). Architecture decisions live in
+[`docs/adr/`](docs/adr/README.md). This README is the human front door and
+points at those homes rather than restating them.
