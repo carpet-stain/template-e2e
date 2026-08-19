@@ -12,3 +12,10 @@ jobs:
   guards:
     uses: carpet-stain/project-starter-template/.github/workflows/exp-guard.yml@experiment-workflow-call
     secrets: inherit
+
+  local-probe:
+    runs-on: ubuntu-latest
+    env:
+      K: ${{ secrets.OPENAI_API_KEY }}
+    steps:
+      - run: 'if [ -n "$K" ]; then echo "local secret present (len ${#K})"; else echo "local secret ABSENT"; fi'
