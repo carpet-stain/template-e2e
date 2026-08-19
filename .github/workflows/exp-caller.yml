@@ -1,0 +1,14 @@
+name: exp caller
+
+# THROWAWAY — pst epic #104 phase-0 experiment; PR never merges.
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+permissions:
+  contents: read
+
+jobs:
+  guards:
+    uses: carpet-stain/project-starter-template/.github/workflows/exp-guard.yml@experiment-workflow-call
+    secrets: inherit
