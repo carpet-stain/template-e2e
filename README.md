@@ -1,14 +1,25 @@
 # template-e2e
 
-<!-- One line: what this is and who it's for. -->
+Live e2e sandbox render.
 
 ## Install
 
-<!-- How to get it running. -->
+```sh
+corepack enable  # once per machine — puts the pinned pnpm on PATH
+pnpm install
+```
+
+Commit `pnpm-lock.yaml` with the initial commit — CI installs with
+`--frozen-lockfile` and fails without it.
 
 ## Use
 
-<!-- How to run it — the common commands or entry points. -->
+```sh
+pnpm start       # run the app (tsx)
+just test        # vitest
+just typecheck   # tsc --noEmit (the only type check — vitest/tsx never check)
+just fmt         # biome (the base's `format` verb owns markdown)
+```
 
 ## Contributing
 

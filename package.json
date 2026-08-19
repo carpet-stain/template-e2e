@@ -1,0 +1,25 @@
+{
+  "name": "template-e2e",
+  "version": "0.1.0",
+  "description": "Live e2e sandbox render.",
+  "author": "project-starter-template e2e <e2e@users.noreply.github.com>",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@11.22.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "test": "vitest run tests/",
+    "typecheck": "tsc --noEmit",
+    "format": "biome format --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "@types/node": "^24.0.0",
+    "tsx": "^4.23.0",
+    "typescript": "^7.0.0",
+    "vitest": "^4.1.0"
+  }
+}
