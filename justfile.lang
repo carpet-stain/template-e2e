@@ -1,5 +1,5 @@
-# TypeScript overlay verbs — picked up by the base justfile's `import?`. Base
-# verbs (lint, adr) live in justfile.base; never add them here.
+# TypeScript overlay verbs (app variant — the lib variant adds `build`; keep
+# the shared verbs in sync). Base verbs (lint, adr) live in justfile.base.
 
 # Run the test suite.
 test *args:
