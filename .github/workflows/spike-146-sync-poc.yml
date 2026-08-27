@@ -33,7 +33,9 @@ jobs:
       - name: open PR on gap
         if: steps.compare.outputs.gap == 'true'
         env:
-          GH_TOKEN: ${{ github.token }}
+          # github.token can't open PRs here (org setting) - same reason
+          # release-prepare.yml uses RELEASE_PAT, not GITHUB_TOKEN.
+          GH_TOKEN: ${{ secrets.RELEASE_PAT }}
           LATEST: ${{ steps.compare.outputs.latest }}
         run: |
           branch="spike-146/sync-manifest-${LATEST}"
