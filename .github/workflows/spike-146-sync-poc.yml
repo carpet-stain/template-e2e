@@ -1,0 +1,50 @@
+name: spike-146-sync-poc
+# Throwaway prototype for project-starter-template#146 (see project-starter-template#147
+# for the real channel). Safe to delete once the spike's decision note posts.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  compare-and-open-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: compare manifest against latest PST release
+        id: compare
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          current=$(jq -r '.["project-starter-template"].version' .sync-manifest.json)
+          latest=$(gh release view --repo carpet-stain/project-starter-template --json tagName -q .tagName)
+          echo "current=$current" >> "$GITHUB_OUTPUT"
+          echo "latest=$latest" >> "$GITHUB_OUTPUT"
+          if [ "$current" = "$latest" ]; then
+            echo "gap=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "gap=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: open PR on gap
+        if: steps.compare.outputs.gap == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LATEST: ${{ steps.compare.outputs.latest }}
+        run: |
+          branch="spike-146/sync-manifest-${LATEST}"
+          git config user.name "spike-146-sync-poc"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout -b "$branch"
+          jq --arg v "$LATEST" '.["project-starter-template"].version = $v' .sync-manifest.json > tmp.json
+          mv tmp.json .sync-manifest.json
+          git add .sync-manifest.json
+          git commit -m "chore(sync): record project-starter-template ${LATEST}"
+          git push origin "$branch"
+          gh pr create --title "chore(sync): record project-starter-template ${LATEST}" \
+            --body "Opened by the spike-146 sync-channel prototype. Manifest was pinned at ${{ steps.compare.outputs.current }}; latest release is ${LATEST}." \
+            --head "$branch" --base main
