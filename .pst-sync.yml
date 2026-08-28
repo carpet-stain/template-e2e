@@ -1,0 +1,4 @@
+files:
+  - path: lefthook.yml
+    source: git-flow/template/lefthook.yml
+    anchor: v1.0.0

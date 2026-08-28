@@ -7,3 +7,5 @@
 extends:
   - lefthook-base.yml
   - lefthook-lang.yml
+
+# e2e: pst-sync errexit-fix collision-test marker (project-starter-template#147) — reverted after verification.
