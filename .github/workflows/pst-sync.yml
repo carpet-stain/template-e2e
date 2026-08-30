@@ -1,0 +1,18 @@
+name: Sync from project-starter-template
+
+# Throwaway pst_ref-override live verification for
+# project-starter-template#157. Reverted after.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  pst-sync:
+    uses: carpet-stain/project-starter-template/.github/workflows/reusable-sync.yml@147-sync-channel
+    with:
+      pst_ref: 147-sync-channel
+    secrets: inherit
