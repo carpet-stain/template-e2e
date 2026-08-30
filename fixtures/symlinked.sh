@@ -1,1 +1,0 @@
-../clean-executable.sh
